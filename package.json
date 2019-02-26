@@ -2,7 +2,6 @@
   "name": "lt-comment",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
   "main": "./src/main.js",
   "dependencies": {
     "@types/jest": "24.0.9",
@@ -19,7 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron ."
   },
   "eslintConfig": {
     "extends": "react-app"
