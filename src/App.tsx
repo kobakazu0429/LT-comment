@@ -1,15 +1,13 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 
-import logo from './logo.svg';
+import logo from "./logo.svg";
 
-const App =() => (
+const App = () => (
   <Wrapper>
     <Header>
       <Logo src={logo} className="App-logo" alt="logo" />
-      <p>
-        Hello, React World !
-      </p>
+      <p>Hello, React World !</p>
     </Header>
   </Wrapper>
 );
