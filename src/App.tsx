@@ -5,19 +5,13 @@ import logo from "./logo.svg";
 
 const App = () => (
   <Wrapper>
-    <Header>
-      <Logo src={logo} className="App-logo" alt="logo" />
-      <p>Hello, React World !</p>
-    </Header>
+    <Logo src={logo} className="App-logo" alt="logo" />
+    <p>Hello, React World !</p>
   </Wrapper>
 );
 
 const Wrapper = styled.div`
   text-align: center;
-`;
-
-const Header = styled.header`
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

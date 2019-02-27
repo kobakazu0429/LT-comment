@@ -13,6 +13,12 @@ const StyledGlobal = createGlobalStyle`
     -ms-box-sizing: border-box;
     box-sizing: border-box;
   }
+
+  html, body {
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+    background: rgba(0, 0, 0, 0);
+  }
   `;
 
 ReactDOM.render(
