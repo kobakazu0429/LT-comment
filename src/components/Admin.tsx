@@ -45,6 +45,7 @@ export default class Admin extends React.Component<IProps, IState> {
     e.preventDefault();
     const payload = {
       type: "speakerInfo",
+      posted_at: new Date(),
       data: this.state
     };
     this.ws.send(JSON.stringify(payload));
