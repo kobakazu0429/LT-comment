@@ -5,6 +5,7 @@ import { createGlobalStyle } from "styled-components";
 
 import IndexPage from "./pages/Index";
 import AdminPage from "./pages/Admin";
+import ScreenPage from "./pages/Screen";
 
 import { Provider } from "./RootContext";
 
@@ -51,6 +52,7 @@ ReactDOM.render(
       <React.Fragment>
         <Route exact path="/" component={IndexPage} />
         <Route path="/admin" component={AdminPage} />
+        <Route path="/screen" component={ScreenPage} />
         <StyledGlobal />
       </React.Fragment>
     </BrowserRouter>
