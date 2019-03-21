@@ -11,6 +11,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/styled-components": "^4.1.10",
     "electron": "^4.0.5",
+    "express-history-api-fallback": "^2.2.1",
     "prettier": "^1.16.4",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
@@ -21,7 +22,8 @@
     "tslint": "^5.13.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-config-standard": "^8.0.1",
-    "tslint-plugin-prettier": "^2.0.1"
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.3.4000"
   },
   "scripts": {
     "start": "react-scripts start",
