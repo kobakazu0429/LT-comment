@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 interface IProps {
-  ws: any;
+  socket: SocketIOClient.Socket;
 }
 
 interface IState {
@@ -13,7 +13,7 @@ interface IState {
 export default class Comment extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
-    this.ws = props.ws.ws;
+    this.socket = props.socket;
   }
 
   state: IState = {
@@ -21,7 +21,7 @@ export default class Comment extends React.Component<IProps, IState> {
     body: ""
   };
 
-  private ws: WebSocket;
+  private socket: SocketIOClient.Socket;
 
   handleSubmit = (e: any) => {
     e.preventDefault();
@@ -30,7 +30,13 @@ export default class Comment extends React.Component<IProps, IState> {
       posted_at: new Date(),
       data: this.state
     };
-    this.ws.send(JSON.stringify(payload));
+    this.socket.emit("COMMENT", payload);
+
+    this.setState(() => {
+      return {
+        body: ""
+      };
+    });
   };
 
   handleChangeColor = (e: any) => {
@@ -61,6 +67,7 @@ export default class Comment extends React.Component<IProps, IState> {
             maxLength={60}
             placeholder="コメント"
             onChange={this.handleChangeBody}
+            value={this.state.body}
           />
           <CommentSubmitButton type="submit" onClick={this.handleSubmit}>
             送信
