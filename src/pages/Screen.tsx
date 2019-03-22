@@ -1,8 +1,11 @@
 import React from "react";
 
-import Screen from "../components/Screen";
-// import { Consumer } from "../RootContext";
+import { Consumer } from "../RootContext";
 
-const ScreenPage = () => <Screen />;
+import Screen from "../components/Screen";
+
+const ScreenPage = () => (
+  <Consumer name="socket">{value => <Screen socket={value} />}</Consumer>
+);
 
 export default ScreenPage;

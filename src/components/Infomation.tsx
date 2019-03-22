@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 interface IProps {
-  ws: any;
+  socket: SocketIOClient.Socket;
 }
 
 interface IState {
@@ -13,7 +13,7 @@ interface IState {
 export default class Infomation extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
-    this.ws = props.ws.ws;
+    this.socket = props.socket;
   }
 
   state: IState = {
@@ -21,14 +21,13 @@ export default class Infomation extends React.Component<IProps, IState> {
     title: ""
   };
 
-  private ws: WebSocket;
+  private socket: SocketIOClient.Socket;
 
   componentDidMount() {
-    this.ws.onmessage = this.handleInfo.bind(this);
+    this.socket.on("LISTENER", this.handleInfo.bind(this));
   }
 
-  handleInfo(e: any) {
-    const response = JSON.parse(e.data);
+  handleInfo(response: any) {
     if (response.type !== "speakerInfo") return;
 
     const name = response.data.name;

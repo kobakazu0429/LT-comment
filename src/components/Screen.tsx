@@ -1,9 +1,34 @@
 import React from "react";
 import styled from "styled-components";
 
-export default class Screen extends React.Component {
+interface IProps {
+  socket: SocketIOClient.Socket;
+}
+
+interface IState {
+  name: string;
+  title: string;
+}
+
+export default class Screen extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
+    this.socket = props.socket;
+  }
+
+  state: IState = {
+    name: "",
+    title: ""
+  };
+
+  private socket: SocketIOClient.Socket;
+
+  componentDidMount() {
+    this.socket.on("SCREEN", this.handleComment.bind(this));
+  }
+
+  handleComment(e: any) {
+    console.log(e);
   }
 
   render() {

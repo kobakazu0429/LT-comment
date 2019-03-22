@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 interface IProps {
-  ws: any;
+  socket: SocketIOClient.Socket;
 }
 
 interface IState {
@@ -11,9 +11,9 @@ interface IState {
 }
 
 export default class Admin extends React.Component<IProps, IState> {
-  constructor(props: any) {
+  constructor(props: IProps) {
     super(props);
-    this.ws = props.ws.ws;
+    this.socket = props.socket;
   }
 
   state: IState = {
@@ -21,7 +21,7 @@ export default class Admin extends React.Component<IProps, IState> {
     title: ""
   };
 
-  private ws: WebSocket;
+  private socket: SocketIOClient.Socket;
 
   handleChangeName = (e: any) => {
     const value = e.target.value;
@@ -43,12 +43,20 @@ export default class Admin extends React.Component<IProps, IState> {
 
   handleSubmit(e: any) {
     e.preventDefault();
+
     const payload = {
       type: "speakerInfo",
       posted_at: new Date(),
       data: this.state
     };
-    this.ws.send(JSON.stringify(payload));
+    this.socket.emit("SPEAKER_INFO", payload);
+
+    this.setState(() => {
+      return {
+        name: "",
+        title: ""
+      };
+    });
   }
 
   render() {
@@ -63,6 +71,7 @@ export default class Admin extends React.Component<IProps, IState> {
               placeholder="名前"
               onChange={this.handleChangeName}
               maxLength={60}
+              value={this.state.name}
             />
             <Label htmlFor="input-name">名前</Label>
           </FormGroup>
@@ -73,6 +82,7 @@ export default class Admin extends React.Component<IProps, IState> {
               placeholder="タイトル"
               onChange={this.handleChangeTitle}
               maxLength={60}
+              value={this.state.title}
             />
             <Label htmlFor="input-title">タイトル</Label>
           </FormGroup>

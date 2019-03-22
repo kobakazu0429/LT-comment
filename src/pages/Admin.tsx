@@ -4,6 +4,8 @@ import { Consumer } from "../RootContext";
 
 import Admin from "../components/Admin";
 
-const AdminPage = () => <Consumer>{ws => <Admin ws={ws} />}</Consumer>;
+const AdminPage = () => (
+  <Consumer name="socket">{value => <Admin socket={value} />}</Consumer>
+);
 
 export default AdminPage;
