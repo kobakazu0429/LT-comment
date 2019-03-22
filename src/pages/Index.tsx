@@ -9,13 +9,13 @@ import SendImage from "../components/SendImage";
 import Infomation from "../components/Infomation";
 
 const IndexPage = () => (
-  <Consumer>
-    {ws => (
+  <Consumer name="socket">
+    {value => (
       <Wrapper>
         <Header />
-        <Comment ws={ws} />
+        <Comment socket={value} />
         <SendImage />
-        <Infomation ws={ws} />
+        <Infomation socket={value} />
       </Wrapper>
     )}
   </Consumer>
