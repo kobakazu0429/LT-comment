@@ -11,7 +11,7 @@ interface IState {
 }
 
 export default class Infomation extends React.Component<IProps, IState> {
-  constructor(props: any) {
+  constructor(props: IProps) {
     super(props);
     this.socket = props.socket;
   }
