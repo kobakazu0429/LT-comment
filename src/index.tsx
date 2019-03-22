@@ -36,18 +36,8 @@ const StyledGlobal = createGlobalStyle`
   }
 `;
 
-const ws = new WebSocket("ws://127.0.0.1:5001");
-
-ws.onopen = (e: any) => {
-  console.log("Opened !");
-};
-
 ReactDOM.render(
-  <Provider
-    value={{
-      ws
-    }}
-  >
+  <Provider>
     <BrowserRouter>
       <React.Fragment>
         <Route exact path="/" component={IndexPage} />

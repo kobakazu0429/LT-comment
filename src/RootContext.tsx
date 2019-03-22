@@ -1,6 +1,15 @@
-import React from "react";
+import { createGlobalState } from "react-context-global-state";
+import socketIOClient from "socket.io-client";
 
-const RootContext = React.createContext({});
+const socket = socketIOClient("http://localhost:5001");
 
-export const { Provider, Consumer } = RootContext;
-export default RootContext;
+socket.on("connect", () => {
+  console.log(`connected: ${socket.connected}`);
+});
+
+const initialState = { socket };
+
+export const {
+  StateProvider: Provider,
+  StateConsumer: Consumer
+} = createGlobalState(initialState);
