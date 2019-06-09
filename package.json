@@ -16,7 +16,7 @@
     "electron": "^4.0.5",
     "express": "^4.16.4",
     "express-history-api-fallback": "^2.2.1",
-    "prettier": "^1.16.4",
+    "prettier": "^1.18.2",
     "react": "^16.8.3",
     "react-context-global-state": "^2.1.5",
     "react-dom": "^16.8.3",
