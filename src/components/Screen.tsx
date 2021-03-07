@@ -5,11 +5,19 @@ interface IProps {
   socket: SocketIOClient.Socket;
 }
 
+interface IComment {
+  data: {
+    body: string;
+    color: "black" | "red" | "blue" | "yellow";
+  };
+}
+
 interface IState {
   size: {
     width: number;
     height: number;
   };
+  comment: IComment[];
 }
 
 export default class Screen extends React.Component<IProps, IState> {
@@ -22,7 +30,8 @@ export default class Screen extends React.Component<IProps, IState> {
     size: {
       width: 0,
       height: 0
-    }
+    },
+    comment: []
   };
 
   private socket: SocketIOClient.Socket;
@@ -60,16 +69,27 @@ export default class Screen extends React.Component<IProps, IState> {
     this.socket.on("SCREEN", this.handleComment.bind(this));
   }
 
-  handleComment(e: any) {
+  handleComment(e: IComment) {
     console.log(e);
+    const newArray = this.state.comment.concat("e");
+
+    this.setState(() => {
+      return {
+        comment: newArray
+      };
+    });
   }
 
   render() {
     return (
       <Wrapper>
-        <h1>Screen</h1>
-        <p>{this.state.size.width}</p>
-        <p>{this.state.size.height}</p>
+        <h1 style={{ fontSize: `${0.03 * this.state.size.width}px` }}>
+          Screen
+        </h1>
+        <ul>
+          <li>{this.state.size.width}</li>
+          <li>{this.state.size.height}</li>
+        </ul>
       </Wrapper>
     );
   }
